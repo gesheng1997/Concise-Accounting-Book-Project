@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/record.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1 class="record-title">账本记录</h1>
+        <hr class="seperate">
+        <div class="record-content">
+            <% if(typeof(records) === 'string') {%>
+                <h2><%= records %></h2>
+            <% }else{ %>
+                <% records.forEach(record => {%>
+                    <div class="record-wrapper">
+                        <div class=<% if(record.type === '1'){ %>
+                            "record-date-expand"
+                        <% } %>
+                        <% if(record.type === '2'){ %> 
+                            "record-date-income"    
+                        <% } %>
+                        >
+                            <%= record.time %>
+                        </div>
+                        <hr class="seperate">
+                        <div class="record-detail">
+                            <div><%= record.affair %></div>
+                            <div>
+                                <% if(record.type === '1'){ %> <div class="record-expand">支出</div> <% } %>
+                                <% if(record.type === '2'){ %> <div class="record-income">收入</div> <% } %>
+                            </div>
+                            <div><%= record.amount %>元</div>
+                        </div>
+                        <hr class="seperate">
+                        <div class="record-remark">
+                            <% if(record.remark) { %> 
+                                <span style="font-size: 14px;font-weight: bold;">备注：</span><span><%= record.remark %></span> 
+                            <% }else{ %> 
+                                <span style="font-size: 14px;font-weight: bold;">备注：</span><span>无</span> 
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+        <hr class="seperate">
+        <div class="record-add">
+            <a href="/add">
+                <div>添加一条记录</div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

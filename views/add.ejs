@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/add.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1 class="add-title">添加记录</h1>
+        <hr class="seperate">
+        <div class="add-form">
+            <form method="post" action="/add">
+                <div>事项</div>
+                <input type="text" name="affair" id="1" required>
+                <div>发生时间</div>
+                <input type="date" name="time" id="2" required>
+                <div>类型</div>
+                <select name="type" id="3" required>
+                    <option value="1" selected>支出</option>
+                    <option value="2">收入</option>
+                </select>
+                <div>金额</div>
+                <input type="number" name="amount" id="4" required>
+                <div>备注</div>
+                <textarea name="remark" id="5" cols="57" rows="3"></textarea>
+                <hr class="seperate">
+                <button type="submit">添加</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
