@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/record.css">
-    <title>Document</title>
+    <title>账本记录</title>
 </head>
 
 <body>
-    <div class="wrapper">
+    <div id="wrapper" class="wrapper">
         <h1 class="record-title">账本记录</h1>
-        <hr class="seperate">
+        <hr class="seperate" style="margin-bottom: 10px;">
         <div class="record-content">
             <% if(typeof(records) === 'string') {%>
                 <h2><%= records %></h2>
@@ -30,12 +30,12 @@
                         </div>
                         <hr class="seperate">
                         <div class="record-detail">
-                            <div><%= record.affair %></div>
-                            <div>
+                            <div class="detail-affair"><%= record.affair %></div>
+                            <div class="detail-type">
                                 <% if(record.type === '1'){ %> <div class="record-expand">支出</div> <% } %>
                                 <% if(record.type === '2'){ %> <div class="record-income">收入</div> <% } %>
                             </div>
-                            <div><%= record.amount %>元</div>
+                            <div class="detail-amount"><%= record.amount %>元</div>
                         </div>
                         <hr class="seperate">
                         <div class="record-remark">

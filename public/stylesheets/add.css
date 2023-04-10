@@ -82,6 +82,8 @@ form select:hover {
 }
 
 form textarea {
+    max-width: 97%;
+    min-width: 97%;
     padding: 4px 10px 4px 10px;
     transition: outline .2s;
 }
