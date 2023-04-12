@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'iconfont';
+    /* Project id 3193367 */
+    src: url('//at.alicdn.com/t/c/font_3193367_mdagwpc5vxh.woff2?t=1681278200487') format('woff2'),
+        url('//at.alicdn.com/t/c/font_3193367_mdagwpc5vxh.woff?t=1681278200487') format('woff'),
+        url('//at.alicdn.com/t/c/font_3193367_mdagwpc5vxh.ttf?t=1681278200487') format('truetype');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 body {
     position: absolute;
     width: 100%;
@@ -47,6 +64,63 @@ body {
     font-weight: bold;
 }
 
+.wrapper .filter-records{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.filter-records .filter-params{
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1 1 auto;
+}
+
+.filter-records .submit-btn{
+    height: 32px;
+    width: 60px;
+    background-color: #70d2ff;
+    color: rgb(244, 244, 244);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.filter-records .submit-btn:hover{
+    color: white;
+    background-color: #2cbcff;
+}
+
+.filter-params .filter-type select{
+    width: 120px;
+    height: 25px;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.filter-params .filter-type select:focus{
+    border: none;
+    outline:#00B7FF 1px solid;
+    border-radius: 3px;
+}
+
+.filter-params .filter-span input{
+    width: 120px;
+    height: 25px;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.filter-params .filter-span input:focus{
+    border: none;
+    outline:#00B7FF 1px solid;
+    border-radius: 3px;
+}
+
 .wrapper .record-content {
     width: 100%;
     display: flex;
@@ -62,6 +136,17 @@ body {
     border-radius: 10px;
     padding: 0 0 5px 0;
     overflow: hidden;
+    transition: all .2s;
+}
+
+.record-content .record-wrapper:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+}
+
+.record-wrapper .record-date{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .record-wrapper .record-date-expand {
@@ -73,7 +158,21 @@ body {
 .record-wrapper .record-date-income {
     padding: 5px 0 5px 5px;
     font-size: 16px;
-    background-color: rgb(216, 103, 103);
+    background-color: rgb(236, 143, 143);
+}
+
+.record-date .delete-btn{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgba(255,69,0,.3);
+    cursor: pointer;
+    transition: color .2s;
+}
+
+.record-date .delete-btn:hover{
+    color: rgba(255,69,0,.8);
 }
 
 .record-wrapper .record-detail {

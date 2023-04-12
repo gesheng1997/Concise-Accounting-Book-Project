@@ -5,48 +5,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/record.css">
     <title>账本记录</title>
+    <link rel="stylesheet" href="/stylesheets/record.css">
 </head>
 
 <body>
     <div id="wrapper" class="wrapper">
         <h1 class="record-title">账本记录</h1>
+
         <hr class="seperate" style="margin-bottom: 10px;">
+        <form class="filter-records" method="get" action="/record">
+            <div class="filter-params">
+                <div class="filter-type">
+                    <span style="font-weight: bold;">账目类别：</span>
+                    <select name="type" id="1">
+                        <option value="1" selected>支出</option>
+                        <option value="2">收入</option>
+                        <option value="3">不限</option>
+                    </select>
+                </div>
+                <div class="filter-span">
+                    <span style="font-weight: bold;">时间范围：</span>
+                    <input type="date" name="dateGt" id="2">
+                    ——>
+                    <input type="date" name="dateLt" id="3">
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">筛选</button>
+        </form>
+        <hr class="seperate" style="margin-bottom: 10px;">
+
         <div class="record-content">
             <% if(typeof(records) === 'string') {%>
-                <h2><%= records %></h2>
+            <h2><%= records %></h2>
             <% }else{ %>
-                <% records.forEach(record => {%>
-                    <div class="record-wrapper">
-                        <div class=<% if(record.type === '1'){ %>
-                            "record-date-expand"
-                        <% } %>
-                        <% if(record.type === '2'){ %> 
-                            "record-date-income"    
-                        <% } %>
-                        >
-                            <%= record.time %>
-                        </div>
-                        <hr class="seperate">
-                        <div class="record-detail">
-                            <div class="detail-affair"><%= record.affair %></div>
-                            <div class="detail-type">
-                                <% if(record.type === '1'){ %> <div class="record-expand">支出</div> <% } %>
-                                <% if(record.type === '2'){ %> <div class="record-income">收入</div> <% } %>
-                            </div>
-                            <div class="detail-amount"><%= record.amount %>元</div>
-                        </div>
-                        <hr class="seperate">
-                        <div class="record-remark">
-                            <% if(record.remark) { %> 
-                                <span style="font-size: 14px;font-weight: bold;">备注：</span><span><%= record.remark %></span> 
-                            <% }else{ %> 
-                                <span style="font-size: 14px;font-weight: bold;">备注：</span><span>无</span> 
-                            <% } %>
-                        </div>
+            <% records.forEach(record => {%>
+            <div class="record-wrapper">
+                <div class=<% if(record.type === '1'){ %> "record-date record-date-expand" <% } %>
+                    <% if(record.type === '2'){ %> "record-date record-date-income" <% } %>>
+                    <div class="record-date"><%= record.time %></div>
+                    <i class="iconfont delete-btn">&#xe600;</i>
+                    <div class="hidden-id" hidden><%= record._id %></div>
+                </div>
+                <hr class="seperate">
+                <div class="record-detail">
+                    <div class="detail-affair"><%= record.affair %></div>
+                    <div class="detail-type">
+                        <% if(record.type === '1'){ %> <div class="record-expand">支出</div> <% } %>
+                        <% if(record.type === '2'){ %> <div class="record-income">收入</div> <% } %>
                     </div>
-                <% }) %>
+                    <div class="detail-amount"><%= record.amount %>元</div>
+                </div>
+                <hr class="seperate">
+                <div class="record-remark">
+                    <span style="font-size: 14px;font-weight: bold;">备注：</span><span><%= record.remark %></span>
+                </div>
+            </div>
+            <% }) %>
             <% } %>
         </div>
         <hr class="seperate">
@@ -56,6 +71,8 @@
             </a>
         </div>
     </div>
+
+    <script src="/javascripts/deleteAccount.js"></script>
 </body>
 
 </html>
