@@ -5,10 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const db = require('./db/db');
 const accountModel = require('./model/accountModel');
+const userModel = require('./model/userModel');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
-var indexRouter = require('./routes/index');
-var recordRouter = require('./routes/record');
-var addRouter = require('./routes/add');
+let userRouter = require('./routes/user');
+let recordRouter = require('./routes/record');
+let addRouter = require('./routes/add');
+let loginRouter = require('./routes/login');
+let registerRouter = require('./routes/register');
 
 db(() => {
     accountModel.create().then(() => {
@@ -16,6 +21,12 @@ db(() => {
     }).catch(err => {
         console.log('accounts创建失败',err);
     });
+
+    userModel.create().then(() => {
+        console.log('文档users创建成功');
+    }).catch(err => {
+        console.log('文档users创建失败',err);
+    })
 });
 
 var app = express();
@@ -31,10 +42,26 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    name:'sid',
+    secret:'ilovewenjun',
+    saveUninitialized:false,
+    resave:true,
+    store:MongoStore.create({
+        mongoUrl:'mongodb://127.0.0.1:27017/accountBook'
+    }),
+    cookie:{
+        httpOnly:true,
+        maxAge:1000 * 60 * 60 * 72
+    }
+}))
 
-app.use('/', indexRouter);
+app.use('/', loginRouter);
+app.use('/user', userRouter);
 app.use('/record', recordRouter);
 app.use('/add', addRouter);
+app.use('/login',loginRouter);
+app.use('/register',registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,10 +1,10 @@
+/* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
-    font-family: 'iconfont';
-    /* Project id 3193367 */
-    src: url('//at.alicdn.com/t/c/font_3193367_mdagwpc5vxh.woff2?t=1681278200487') format('woff2'),
-        url('//at.alicdn.com/t/c/font_3193367_mdagwpc5vxh.woff?t=1681278200487') format('woff'),
-        url('//at.alicdn.com/t/c/font_3193367_mdagwpc5vxh.ttf?t=1681278200487') format('truetype');
-}
+    font-family: 'iconfont';  /* Project id 3193367 */
+    src: url('//at.alicdn.com/t/c/font_3193367_mina87y137.woff2?t=1681788674488') format('woff2'),
+         url('//at.alicdn.com/t/c/font_3193367_mina87y137.woff?t=1681788674488') format('woff'),
+         url('//at.alicdn.com/t/c/font_3193367_mina87y137.ttf?t=1681788674488') format('truetype');
+  }
 
 .iconfont {
     font-family: "iconfont" !important;
@@ -55,21 +55,66 @@ body {
     padding: 10px;
     overflow-x: hidden;
     overflow-y: scroll;
+    background-color: rgba(200, 200, 200, 0.1);
 }
 
-.wrapper .record-title {
+.wrapper .fixed-header{
+    width: 100%;
+    height: 120px;
+}
+
+.wrapper .header-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-wrapper .add-and-title{
+    display: flex;
+    align-items: center;
+}
+
+.header-wrapper .record-title {
     font-size: 30px;
     /* position: fixed; */
     margin: 10px;
     font-weight: bold;
 }
 
+.header-wrapper .user-info{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px black double;
+    cursor: pointer;
+    top: 0;
+    z-index: 100;
+    transition: all .2s;
+}
+
+.header-wrapper .user-info-active{
+    width: 50px;
+    height: 50px;
+    top: 25px;
+}
+
+.user-info img{
+    width: 100%;
+    height: 100%;
+}
+
 .wrapper .filter-records{
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    padding-top: 10px;
+    border-top: 1px black solid;
 }
 
 .filter-records .filter-params{
@@ -121,12 +166,67 @@ body {
     border-radius: 3px;
 }
 
+.filter-records #user-operate{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 5px;
+    width: 150px;
+    height: 0;
+    background-color: rgb(250, 250, 250);
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    overflow: hidden;
+    transition: all .2s;
+    /* display: none; */
+}
+
+.filter-records .user-operate-active{
+    /* display: block!important; */
+    height: 60px!important;
+    border: 1px rgb(200, 200, 200) solid;
+    padding: 5px 8px;
+}
+
+#user-operate .user-greet{
+    font-size: 15px;
+    /* font-weight: bolder; */
+    padding-bottom: 10px;
+    border-bottom: 1.5px rgb(152, 152, 152) solid;
+}
+
+#user-operate .operate-btn{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.operate-btn .btns{
+    display: flex;
+    align-items: center;
+    color: rgb(255, 89, 89);
+    font-weight: bolder;
+    height: 25px;
+    padding-left: 4px;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.operate-btn .btns:hover{
+    background-color: rgba(175, 175, 175, 0.1);
+    border-radius: 5px;
+}
+
+.btns .logout-btn{
+    color: rgb(255, 89, 89);
+}
+
 .wrapper .record-content {
     width: 100%;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    align-items: sticky;
+    align-items: center;
 }
 
 .record-content .record-wrapper {
@@ -137,6 +237,7 @@ body {
     padding: 0 0 5px 0;
     overflow: hidden;
     transition: all .2s;
+    background-color: white;
 }
 
 .record-content .record-wrapper:hover{
@@ -221,14 +322,16 @@ body {
 }
 
 .record-add {
-    width: 100%;
-    height: 10%;
+    width: 55px;
+    height:35px;
     margin-top: 10px;
 }
 
 .record-add a {
     /* color: #00B7FF; */
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     background-color: #00B7FF;

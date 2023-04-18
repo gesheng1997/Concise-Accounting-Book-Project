@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="login-wrapper">
+        <h1 class="login-title">请您登录</h1>
+        <h3><%= errorMsg %></h3>
+        <div class="login-content">
+            <form id="login-form" method="post" action="/login">
+                用户名：<input type="text" name="username" required>
+                密码：<input type="password" name="password" required>
+                <div class="login-btns">
+                    <button type="submit">登录</button>
+                    <button onclick="window.location.href = '/register'">注册</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

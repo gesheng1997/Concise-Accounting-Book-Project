@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='/stylesheets/user.css' />
+        <title>我的记账本</title>
+    </head>
+
+    <body>
+        <div class="wrapper cover">
+            <div class="cover-header">
+                <h1 class="cover-greet">你好！<%= nickname %>！</h1>
+                <div class="cover-avater">
+                    <img src="<%= avaterPath %>" alt="avater">
+                </div>
+                <h1 class="cover-title"><%= nickname %>的简明记账本</h1>
+            </div>
+            <div class="btn-wrapper">
+                <a href='/record' class="cover-btn">
+                    <div>打开账本</div>
+                </a>
+                <a href="/add" class="cover-btn">
+                    <div>添加账目</div>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

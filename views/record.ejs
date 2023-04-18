@@ -11,28 +11,52 @@
 
 <body>
     <div id="wrapper" class="wrapper">
-        <h1 class="record-title">账本记录</h1>
-
-        <hr class="seperate" style="margin-bottom: 10px;">
-        <form class="filter-records" method="get" action="/record">
-            <div class="filter-params">
-                <div class="filter-type">
-                    <span style="font-weight: bold;">账目类别：</span>
-                    <select name="type" id="1">
-                        <option value="1" selected>支出</option>
-                        <option value="2">收入</option>
-                        <option value="3">不限</option>
-                    </select>
+        <div class="fixed-header">
+            <div class="header-wrapper">
+                <div class="add-and-title">
+                    <h1 class="record-title">账本记录</h1>
+                    <div class="record-add">
+                        <a href="/add">
+                            <i class="iconfont">&#xe601;</i>
+                        </a>
+                    </div>
                 </div>
-                <div class="filter-span">
-                    <span style="font-weight: bold;">时间范围：</span>
-                    <input type="date" name="dateGt" id="2">
-                    ——>
-                    <input type="date" name="dateLt" id="3">
+                <div id="user-avater" class="user-info">
+                    <img class="avater-info" src="<%= avaterPath %>" alt="">
                 </div>
             </div>
-            <button type="submit" class="submit-btn">筛选</button>
-        </form>
+
+            <form class="filter-records" method="get" action="/record">
+                <div class="filter-params">
+                    <div class="filter-type">
+                        <span style="font-weight: bold;">账目类别：</span>
+                        <select name="type" id="1">
+                            <option value="1" selected>支出</option>
+                            <option value="2">收入</option>
+                            <option value="3">不限</option>
+                        </select>
+                    </div>
+                    <div class="filter-span">
+                        <span style="font-weight: bold;">时间范围：</span>
+                        <input type="date" name="dateGt" id="2">
+                        ——>
+                        <input type="date" name="dateLt" id="3">
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">筛选</button>
+
+                <div id="user-operate">
+                    <div class="user-greet">用户：<%= username %></div>
+                    <div class="operate-btn">
+                        <div class="btns" id="logout-btn">
+                            <i class="iconfont logout-icon">&#xe62c;</i>
+                            退出登录
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <hr class="seperate" style="margin-bottom: 10px;">
 
         <div class="record-content">
@@ -65,14 +89,11 @@
             <% } %>
         </div>
         <hr class="seperate">
-        <div class="record-add">
-            <a href="/add">
-                <div>添加一条记录</div>
-            </a>
-        </div>
+
     </div>
 
     <script src="/javascripts/deleteAccount.js"></script>
+    <script src="/javascripts/hoverAvater.js"></script>
 </body>
 
 </html>

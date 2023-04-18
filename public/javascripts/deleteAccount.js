@@ -11,7 +11,7 @@ const deleteAccount = () => {
             //发送请求体中数据格式为application/json，第二请求体中的对象必须通过
             //JSON.stringfy转换成json格式！这样后端才能接收的到参数！
             fetch('http://127.0.0.1:3000/record', {
-                method: 'POST',
+                method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json"
                 },
