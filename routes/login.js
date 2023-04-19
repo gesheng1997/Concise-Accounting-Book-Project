@@ -2,12 +2,12 @@ const express = require('express');
 const path = require('path');
 const crypto = require('crypto-js');
 const userModel = require('../model/userModel');
+const haveLoginMiddleware = require('../middleware/haveLoginMiddleware');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    if (req.session.username) res.redirect(`/user/${req.session.username}`);
-    else res.render('login', { errorMsg:'' });
+router.get('/', haveLoginMiddleware ,(req, res, next) => {
+    res.render('login', { errorMsg:'' });
 });
 
 router.post('/', (req, res, next) => {

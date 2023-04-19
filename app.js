@@ -8,6 +8,7 @@ const accountModel = require('./model/accountModel');
 const userModel = require('./model/userModel');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const {DBHOST,DBPORT,DBNAME} = require('./config/dbconfig');
 
 let userRouter = require('./routes/user');
 let recordRouter = require('./routes/record');
@@ -48,7 +49,7 @@ app.use(session({
     saveUninitialized:false,
     resave:true,
     store:MongoStore.create({
-        mongoUrl:'mongodb://127.0.0.1:27017/accountBook'
+        mongoUrl:`mongodb://${DBHOST}:${DBPORT}/${DBNAME}`
     }),
     cookie:{
         httpOnly:true,
@@ -62,6 +63,18 @@ app.use('/record', recordRouter);
 app.use('/add', addRouter);
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);
+
+app.post('/logout',(req,res,next) => {
+    req.session.destroy(() => {
+        console.log('登出成功');
+        res.send('登出成功');
+    })
+});
+
+app.get('/logout',(req,res,next) => {
+    console.log('登出成功');
+    res.send('登出成功');
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

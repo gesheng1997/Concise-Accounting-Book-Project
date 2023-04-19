@@ -24,8 +24,8 @@ userOperate.onmouseover = event => {
 };
 
 logoutBtn.onclick = () => {
-    fetch('/record/logout',{
-        method:'GET'
+    fetch('/logout',{
+        method:'POST'
     }).then(response => {
         return response.text();
     }).then(res => {

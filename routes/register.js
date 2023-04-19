@@ -5,12 +5,13 @@ const path = require('path'); //引入path模块用于路径拼接运算
 const formidable = require('formidable');
 const crypto = require('crypto-js');
 const userModel = require('../model/userModel');
+const haveLoginMiddleware = require('../middleware/haveLoginMiddleware');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    if (req.session.username) res.redirect(`/user/${req.session.username}`);
-    else res.render('register', {
+//利用路由中间件进行登录检测和拦截
+router.get('/', haveLoginMiddleware, (req, res, next) => {
+    res.render('register', {
         errorMsg: ''
     });
 })
@@ -59,7 +60,7 @@ router.post('/', (req, res, next) => {
             //如果创建新用户报错，那么会将错误消息返还给前端ejs，前端在页面上显示
             let errorMsg = '';
 
-            if (err.code === 11000){
+            if (err.code === 11000) {
                 errorMsg = '该用户已经存在！';
                 //用户存在的情况下，删除上传的头像文件
                 fs.rmSync(path.join(fullAvaterPath, files.avater.newFilename));

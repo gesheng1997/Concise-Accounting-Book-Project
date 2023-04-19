@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const accountModel = require('../model/accountModel');
+const checkLoginMiddleware = require('../middleware/checkLogin');
 
-router.get('/',(req,res,next) => {
-    if(!req.session.username) res.redirect('/login');
+router.get('/', checkLoginMiddleware ,(req,res,next) => {
     res.render('add',{});
 });
 
-router.post('/',(req,res,next) => {
+router.post('/', checkLoginMiddleware ,(req,res,next) => {
     console.log(req.session.username);
     accountModel.create({...req.body,username:req.session.username}).then(msg => {
         console.log('插入成功',msg);

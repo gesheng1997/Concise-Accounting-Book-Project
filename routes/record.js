@@ -1,12 +1,12 @@
 var express = require('express');
 const accountModel = require('../model/accountModel');
+const checkLoginMiddleware = require('../middleware/checkLogin');
 
 var router = express.Router();
 
 /* GET users listing. */
 //用一个get处理函数处理查询所有以及查询筛选条件的情况
-router.get('/', function (req, res, next) {
-    if(!req.session.username) res.redirect('/login');
+router.get('/', checkLoginMiddleware ,function (req, res, next) {
     let {type,dateGt,dateLt} = req.query;
     //注意get中的请求参数放在查询参数而非body中！ 这里踩坑了！
     // console.log(req.query);
@@ -21,7 +21,7 @@ router.get('/', function (req, res, next) {
     }
     // console.log(searchObj);
     accountModel.find(searchObj).sort({time:1}).then(records => {
-        console.log(records);
+        // console.log(records);
         if(records.length === 0) records = '无记录，请更换筛选条件或添加记录！';
         res.render('record', {
             records,
@@ -44,13 +44,6 @@ router.delete('/', function (req, res, next) {
             res.send(new Error('删除失败:'+ err));
         });
     }
-})
-
-router.get('/logout',(req,res,next) => {
-    req.session.destroy(() => {
-        console.log('登出成功');
-        res.send('登出成功');
-    })
 })
 
 module.exports = router;

